@@ -1,0 +1,262 @@
+header {
+  width: 100%;
+  position: relative;
+  height: 13rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+header div {
+  height: 65%;
+  width: 80%;
+  max-width: 800px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  padding: 0.875rem;
+}
+
+header div > button {
+  border: none;
+  position: relative;
+  padding: 2rem 2rem 2rem 4rem;
+  font-size: 2.2rem;
+  background: rgba(127, 255, 212, 0.384);
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+header div > button:hover {
+  background: aquamarine;
+}
+
+header div > button.first.scoreX, header div > button.first.scoreCircle {
+  background: aquamarine;
+}
+
+header div > button:first-child::before {
+  content: "";
+  position: absolute;
+  left: 1.6rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%) rotate(45deg);
+          transform: translateY(-50%) rotate(45deg);
+  height: 0.2rem;
+  width: 2rem;
+  background: #0554fd;
+}
+
+header div > button:first-child::after {
+  content: "";
+  position: absolute;
+  left: 1.6rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%) rotate(-45deg);
+          transform: translateY(-50%) rotate(-45deg);
+  height: 0.2rem;
+  width: 2rem;
+  background: #0554fd;
+}
+
+header div > button:nth-child(2)::before {
+  content: "";
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  position: absolute;
+  left: 1.6rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  height: 1.3rem;
+  width: 1.3rem;
+  border-radius: 50%;
+  border: 0.2rem solid #d100c0;
+}
+
+header div img {
+  opacity: 0.5;
+}
+
+main .boxContainer {
+  position: relative;
+  width: 50rem;
+  position: relative;
+  margin: 3.15rem auto 0 auto;
+  padding: 10rem;
+  -webkit-box-shadow: 0 0 0.5rem #0303032e;
+          box-shadow: 0 0 0.5rem #0303032e;
+  border-radius: 0.4rem;
+  background: aquamarine;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+}
+
+main .boxContainer::before {
+  content: "";
+  position: absolute;
+  height: calc(100% - 20rem);
+  width: 0.1rem;
+  background: #d100c0;
+  left: 19.95rem;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+main .boxContainer::after {
+  content: "";
+  position: absolute;
+  height: calc(100% - 20rem);
+  width: 0.1rem;
+  background: #d100c0;
+  right: 19.95rem;
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
+}
+
+main .boxContainer .line {
+  height: 0.1rem;
+  width: 100%;
+  background: #d100c0;
+}
+
+main .boxContainer .box {
+  position: relative;
+  width: 9.6rem;
+  height: 9.6rem;
+}
+
+main .boxContainer .box.x::after, main .boxContainer .box.x::before, main .boxContainer .box.circle::before {
+  opacity: 0;
+  -webkit-animation: opacity 0.2s forwards;
+          animation: opacity 0.2s forwards;
+}
+
+main .boxContainer .box.circle::before {
+  content: "";
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 50%;
+  width: 50%;
+  border-radius: 50%;
+  border: 0.3rem solid #d100c0;
+}
+
+main .boxContainer .box.x::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
+  height: 0.3rem;
+  width: 50%;
+  background: #0554fd;
+}
+
+main .boxContainer .box.x::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+          transform: translate(-50%, -50%) rotate(-45deg);
+  height: 0.3rem;
+  width: 50%;
+  background: #0554fd;
+}
+
+main .boxContainer.boxColor::before {
+  background: #0554fd;
+}
+
+main .boxContainer.boxColor::after {
+  background: #0554fd;
+}
+
+main .boxContainer.boxColor .line {
+  background: #0554fd;
+}
+
+main .boxContainer .turnBox {
+  position: absolute;
+  top: 1rem;
+  right: 5rem;
+  font-size: 1.6rem;
+}
+
+main .boxContainer .turnBox .turnX::before, main .boxContainer .turnBox .turnX::after {
+  content: "";
+  position: absolute;
+  right: -3rem;
+  top: 50%;
+  height: 0.2rem;
+  width: 2rem;
+  background: #0554fd;
+}
+
+main .boxContainer .turnBox .turnX::before {
+  -webkit-transform: translateY(-50%) rotate(45deg);
+          transform: translateY(-50%) rotate(45deg);
+}
+
+main .boxContainer .turnBox .turnX::after {
+  -webkit-transform: translateY(-50%) rotate(-45deg);
+          transform: translateY(-50%) rotate(-45deg);
+}
+
+main .boxContainer .turnBox .turnCircle::before {
+  content: "";
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  position: absolute;
+  right: -3rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  height: 1.3rem;
+  width: 1.3rem;
+  border-radius: 50%;
+  border: 0.2rem solid #d100c0;
+}
+
+@-webkit-keyframes opacity {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes opacity {
+  to {
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,266 @@
+@mixin x1() {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+
+    height: 0.3rem;
+    width: 50%;
+    background: rgb(5, 84, 253);
+}
+
+@mixin x2() {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+
+    height: 0.3rem;
+    width: 50%;
+    background: rgb(5, 84, 253);
+}
+
+@mixin circle() {
+    content: "";
+    backface-visibility: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    height: 50%;
+    width: 50%;
+
+    border-radius: 50%;
+    border: 0.3rem solid rgb(209, 0, 192);
+}
+
+header {
+    width: 100%;
+    position: relative;
+    height: 13rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div {
+        height: 65%;
+        width: 80%;
+        max-width: 800px;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+
+        padding: 0.875rem;
+
+        & > button {
+            border: none;
+            position: relative;
+            padding: 2rem 2rem 2rem 4rem;
+            font-size: 2.2rem;
+            background: rgba(127, 255, 212, 0.384);
+            border-radius: 0.4rem;
+            cursor: pointer;
+
+            &:hover {
+                background: aquamarine;
+            }
+
+            &.first {
+                &.scoreX,
+                &.scoreCircle {
+                    background: aquamarine;
+                }
+            }
+
+            &:first-child::before {
+                content: "";
+                position: absolute;
+                left: 1.6rem;
+                top: 50%;
+                transform: translateY(-50%) rotate(45deg);
+
+                height: 0.2rem;
+                width: 2rem;
+                background: rgb(5, 84, 253);
+            }
+
+            &:first-child::after {
+                content: "";
+                position: absolute;
+                left: 1.6rem;
+                top: 50%;
+                transform: translateY(-50%) rotate(-45deg);
+
+                height: 0.2rem;
+                width: 2rem;
+                background: rgb(5, 84, 253);
+            }
+
+            &:nth-child(2)::before {
+                content: "";
+                backface-visibility: hidden;
+                position: absolute;
+                left: 1.6rem;
+                top: 50%;
+                transform: translateY(-50%);
+
+                height: 1.3rem;
+                width: 1.3rem;
+
+                border-radius: 50%;
+                border: 0.2rem solid rgb(209, 0, 192);
+            }
+        }
+
+        img {
+            opacity: 0.5;
+        }
+    }
+}
+
+main {
+    .boxContainer {
+        position: relative;
+        width: 50rem;
+        position: relative;
+        margin: 3.15rem auto 0 auto;
+        padding: 10rem;
+
+        box-shadow: 0 0 0.5rem #0303032e;
+        border-radius: 0.4rem;
+        background: aquamarine;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.25rem 0.5rem;
+
+        // Linhas verticais de divisão para formar a tabela
+        &::before {
+            content: "";
+            position: absolute;
+            height: calc(100% - 20rem);
+            width: 0.1rem;
+
+            background: #d100c0;
+            left: 19.95rem;
+            transform: translateX(-50%);
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            height: calc(100% - 20rem);
+            width: 0.1rem;
+
+            background: #d100c0;
+            right: 19.95rem;
+            transform: translateX(50%);
+        }
+
+        .line {
+            height: 0.1rem;
+            width: 100%;
+
+            background: #d100c0;
+        }
+
+        .box {
+            position: relative;
+
+            width: 9.6rem;
+            height: 9.6rem;
+
+            &.x::after,
+            &.x::before,
+            &.circle::before {
+                opacity: 0;
+                animation: opacity 0.2s forwards;
+            }
+
+            &.circle::before {
+                @include circle();
+            }
+
+            &.x::before {
+                @include x1();
+            }
+
+            &.x::after {
+                @include x2();
+            }
+        }
+
+        &.boxColor {
+            &::before {
+                background: rgb(5, 84, 253);
+            }
+
+            &::after {
+                background: rgb(5, 84, 253);
+            }
+
+            .line {
+                background: rgb(5, 84, 253);
+            }
+        }
+
+        .turnBox {
+            position: absolute;
+            top: 1rem;
+            right: 5rem;
+            font-size: 1.6rem;
+
+            .turnX {
+                &::before,
+                &::after {
+                    content: "";
+                    position: absolute;
+                    right: -3rem;
+                    top: 50%;
+
+                    height: 0.2rem;
+                    width: 2rem;
+                    background: rgb(5, 84, 253);
+                }
+
+                &::before {
+                    transform: translateY(-50%) rotate(45deg);
+                }
+
+                &::after {
+                    transform: translateY(-50%) rotate(-45deg);
+                }
+            }
+
+            .turnCircle {
+                &::before {
+                    content: "";
+                    backface-visibility: hidden;
+                    position: absolute;
+                    right: -3rem;
+                    top: 50%;
+                    transform: translateY(-50%);
+
+                    height: 1.3rem;
+                    width: 1.3rem;
+
+                    border-radius: 50%;
+                    border: 0.2rem solid rgb(209, 0, 192);
+                }
+            }
+        }
+    }
+}
+
+@keyframes opacity {
+    to {
+        opacity: 1;
+    }
+}
