@@ -2,41 +2,42 @@ import getStorage from './storage.js'
 
 const DOM = {
     box: document.getElementsByClassName('box'),
-playerSelected: document.querySelectorAll('.scoreContainer button'),
-changePlayed: document.querySelector('.boxContainer'),
-turn: document.querySelector('.turnBox span'),
-winsX: document.querySelector('.winsX'),
-winsCircle: document.querySelector('.winsCircle'),
+    playerSelected: document.querySelectorAll('.scoreContainer button'),
+    changePlayed: document.querySelector('.boxContainer'),
+    turn: document.querySelector('.turnBox span'),
+    winsX: document.querySelector('.winsX'),
+    winsCircle: document.querySelector('.winsCircle'),
+    modalNotify: document.querySelector('.modalNotifyContainer'),
 
-score: { winsX: 0, winsCircle: 0 },
 
-player: 'x',
-isWinIdentifier: false,
+    player: 'x',
+    isWinIdentifier: false,
 
-isSelectedFirstPlayer: false,
+    isSelectedFirstPlayer: false,
 }
+const score = { winsX: 0, winsCircle: 0 }
 
 function changeIcon(index) {
-    if ((box[index].classList[1] || isWinIdentifier)) return;
+    if ((DOM.box[index].classList[1] || DOM.isWinIdentifier)) return;
 
-    if (!isSelectedFirstPlayer) {
+    if (!DOM.isSelectedFirstPlayer) {
         alert('Clique na pontuação para escolher que inicia a partida');
         return
     }
 
-    if (player === 'x') {
-        box[index].classList.add('circle');
-        player = 'circle';
-        turn.classList.add('turnX');
-        turn.classList.remove('turnCircle');
+    if (DOM.player === 'x') {
+        DOM.box[index].classList.add('circle');
+        DOM.player = 'circle';
+        DOM.turn.classList.add('turnX');
+        DOM.turn.classList.remove('turnCircle');
     } else {
-        box[index].classList.add('x');
-        player = 'x';
-        turn.classList.add('turnCircle');
-        turn.classList.remove('turnX');
+        DOM.box[index].classList.add('x');
+        DOM.player = 'x';
+        DOM.turn.classList.add('turnCircle');
+        DOM.turn.classList.remove('turnX');
     }
 
-    changePlayed.classList.toggle('boxColor');
+    DOM.changePlayed.classList.toggle('boxColor');
 
     isWin();
 }
@@ -45,10 +46,10 @@ function isWin() {
     const myBoxes = [];
     let move = 0;
 
-    for (let i = 0; i < box.length; i++) {
-        myBoxes.push(box[i].classList[1]);
+    for (let i = 0; i < DOM.box.length; i++) {
+        myBoxes.push(DOM.box[i].classList[1]);
 
-        if (box[i].classList[1]) {
+        if (DOM.box[i].classList[1]) {
             move++;
         }
     }
@@ -58,24 +59,28 @@ function isWin() {
             (myBoxes[n1] === myBoxes[n2])
             && myBoxes[n2] === myBoxes[n3]
             && myBoxes[n2]
-        ) && !isWinIdentifier
+        ) && !DOM.isWinIdentifier
 
         if (isWinner) {
-            isWinIdentifier = true;
+            DOM.isWinIdentifier = true;
 
             // Formato do localStorage = "wins" / {winsX: 0, winsCircle: 0}
-            if (player === 'x') {
+            if (DOM.player === 'x') {
                 score.winsX++;
 
                 localStorage.setItem('wins', JSON.stringify({ x: score.winsX, circle: score.winsCircle }));
 
-                winsX.textContent = score.winsX;
+                DOM.winsX.textContent = score.winsX;
+
+
+                DOM.modalNotify.classList.add('active')
             } else {
                 score.winsCircle++;
 
                 localStorage.setItem('wins', JSON.stringify({ x: score.winsX, circle: score.winsCircle }));
 
-                winsCircle.textContent = score.winsCircle;
+                DOM.winsCircle.textContent = score.winsCircle;
+                DOM.modalNotify.classList.add('active')
             }
         }
     }
@@ -90,47 +95,47 @@ function isWin() {
     verify(3, 4, 5);
     verify(6, 7, 8);
 
-    if (move === 9 && !isWinIdentifier) {
+    if (move === 9 && !DOM.isWinIdentifier) {
         alert('Velha!');
     }
 }
 
 function initialPlayer(indexButton) {
     // Caso o usuário não tenha escolhido o primeiro jogador nada acontece no game
-    if (isSelectedFirstPlayer) return;
+    if (DOM.isSelectedFirstPlayer) return;
 
-    playerSelected[indexButton].classList.add('first');
+    DOM.playerSelected[indexButton].classList.add('first');
 
     // Confirmarção para saber se usuário já escolheu o primeiro player
-    isSelectedFirstPlayer = true;
+    DOM.isSelectedFirstPlayer = true;
 
     // Alternando o player inicial
-    if (playerSelected[indexButton].classList[0] === 'scoreX') {
-        player = 'circle';
-        turn.classList.add('turnX');
-        turn.classList.remove('turnCircle');
-        changePlayed.classList.add('boxColor');
+    if (DOM.playerSelected[indexButton].classList[0] === 'scoreX') {
+        DOM.player = 'circle';
+        DOM.turn.classList.add('turnX');
+        DOM.turn.classList.remove('turnCircle');
+        DOM.changePlayed.classList.add('boxColor');
     } else {
-        player = 'x'
-        turn.classList.add('turnCircle');
-        turn.classList.remove('turnX');
-        changePlayed.classList.remove('boxColor');
+        DOM.player = 'x'
+        DOM.turn.classList.add('turnCircle');
+        DOM.turn.classList.remove('turnX');
+        DOM.changePlayed.classList.remove('boxColor');
     }
 
     // Removendo classes de botões inativos
-    for (let i = 0; i < playerSelected.length; i++) {
+    for (let i = 0; i < DOM.playerSelected.length; i++) {
         if (i !== indexButton) {
-            playerSelected[i].classList.remove('first');
+            DOM.playerSelected[i].classList.remove('first');
         }
     }
 }
 
 window.onload = () => {
-    for (let i = 0; i < box.length; i++) {
-        box[i].addEventListener('click', () => changeIcon(i));
+    for (let i = 0; i < DOM.box.length; i++) {
+        DOM.box[i].addEventListener('click', () => changeIcon(i));
 
-        if (i < playerSelected.length) {
-            playerSelected[i].addEventListener('click', () => initialPlayer(i));
+        if (i < DOM.playerSelected.length) {
+            DOM.playerSelected[i].addEventListener('click', () => initialPlayer(i));
         }
     }
 
@@ -140,6 +145,6 @@ window.onload = () => {
     score.winsX = +x;
     score.winsCircle = +circle;
 
-    winsX.textContent = x
-    winsCircle.textContent = circle
+    DOM.winsX.textContent = x
+    DOM.winsCircle.textContent = circle
 }

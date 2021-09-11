@@ -1,17 +1,53 @@
 .modalNotifyContainer {
+    display: none;
     position: fixed;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 
-    bottom: 10rem;
+    opacity: 0;
+    bottom: 0;
+
     right: 10rem;
 
-    .modal {
-        padding: 2rem;
-        background: rgb(5, 20, 160);
-        border-radius: 0.4rem;
+    &.active {
+        display: block;
 
-        p {
-            color: white;
-            font-size: 2rem;
+        animation: moveTop 3s forwards;
+
+        .modal {
+            padding: 2rem;
+            background: rgb(5, 20, 160);
+            border-radius: 0.4rem;
+
+            p {
+                color: white;
+                font-size: 2rem;
+            }
         }
+    }
+}
+
+@keyframes moveTop {
+    15% {
+        bottom: 10rem;
+        opacity: 1;
+    }
+
+    50% {
+        bottom: 10rem;
+        opacity: 1;
+    }
+
+    75% {
+        bottom: 10rem;
+        opacity: 1;
+    }
+
+    99% {
+        bottom: 20rem;
+        opacity: 0;
+    }
+
+    100% {
+        display: none;
     }
 }
