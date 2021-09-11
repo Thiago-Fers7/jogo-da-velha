@@ -1,18 +1,20 @@
 import getStorage from './storage.js'
 
-const box = document.getElementsByClassName('box');
-const playerSelected = document.querySelectorAll('.scoreContainer button');
-const changePlayed = document.querySelector('.boxContainer');
-const turn = document.querySelector('.turnBox span');
-const winsX = document.querySelector('.winsX');
-const winsCircle = document.querySelector('.winsCircle');
+const DOM = {
+    box: document.getElementsByClassName('box'),
+playerSelected: document.querySelectorAll('.scoreContainer button'),
+changePlayed: document.querySelector('.boxContainer'),
+turn: document.querySelector('.turnBox span'),
+winsX: document.querySelector('.winsX'),
+winsCircle: document.querySelector('.winsCircle'),
 
-const score = { winsX: 0, winsCircle: 0 };
+score: { winsX: 0, winsCircle: 0 },
 
-let player = 'x';
-let isWinIdentifier = false;
+player: 'x',
+isWinIdentifier: false,
 
-let isSelectedFirstPlayer = false;
+isSelectedFirstPlayer: false,
+}
 
 function changeIcon(index) {
     if ((box[index].classList[1] || isWinIdentifier)) return;
@@ -41,13 +43,13 @@ function changeIcon(index) {
 
 function isWin() {
     const myBoxes = [];
-    let x = 0;
+    let move = 0;
 
     for (let i = 0; i < box.length; i++) {
         myBoxes.push(box[i].classList[1]);
 
         if (box[i].classList[1]) {
-            x++;
+            move++;
         }
     }
 
@@ -78,10 +80,6 @@ function isWin() {
         }
     }
 
-    if (x === 9 && isWinIdentifier) {
-        alert('Velha!');
-    }
-
     verify(0, 1, 2);
     verify(0, 4, 8);
     verify(0, 3, 6);
@@ -91,6 +89,10 @@ function isWin() {
     verify(2, 4, 6);
     verify(3, 4, 5);
     verify(6, 7, 8);
+
+    if (move === 9 && !isWinIdentifier) {
+        alert('Velha!');
+    }
 }
 
 function initialPlayer(indexButton) {

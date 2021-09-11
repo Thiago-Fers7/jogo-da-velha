@@ -1,0 +1,17 @@
+.modalNotifyContainer {
+    position: fixed;
+
+    bottom: 10rem;
+    right: 10rem;
+
+    .modal {
+        padding: 2rem;
+        background: rgb(5, 20, 160);
+        border-radius: 0.4rem;
+
+        p {
+            color: white;
+            font-size: 2rem;
+        }
+    }
+}

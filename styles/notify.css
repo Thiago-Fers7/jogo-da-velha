@@ -1,0 +1,17 @@
+.modalNotifyContainer {
+  position: fixed;
+  bottom: 10rem;
+  right: 10rem;
+}
+
+.modalNotifyContainer .modal {
+  padding: 2rem;
+  background: #0514a0;
+  border-radius: 0.4rem;
+}
+
+.modalNotifyContainer .modal p {
+  color: white;
+  font-size: 2rem;
+}
+/*# sourceMappingURL=notify.css.map */

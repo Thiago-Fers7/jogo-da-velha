@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,qBAAqB,CAAC;EAClB,QAAQ,EAAE,KAAK;EAEf,MAAM,EAAE,KAAK;EACb,KAAK,EAAE,KAAK;CAYf;;AAhBD,AAMI,qBANiB,CAMjB,MAAM,CAAC;EACH,OAAO,EAAE,IAAI;EACb,UAAU,EAAE,OAAe;EAC3B,aAAa,EAAE,MAAM;CAMxB;;AAfL,AAWQ,qBAXa,CAMjB,MAAM,CAKF,CAAC,CAAC;EACE,KAAK,EAAE,KAAK;EACZ,SAAS,EAAE,IAAI;CAClB",
+    "sources": [
+        "notify.scss"
+    ],
+    "names": [],
+    "file": "notify.css"
+}
